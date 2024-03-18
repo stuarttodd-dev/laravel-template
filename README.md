@@ -14,6 +14,8 @@
 11) A user with email **hello@halfshellstudios.co.uk** / **password** will be seeded to the database.
 12) Navigate to http://127.0.0.1:8000/
 
+[!tip] Any routing issues, run `php artisan route:clear`
+
 ### Laravel Pint
 This template comes bundled with Laravel Pint.
 https://laravel.com/docs/10.x/pint
