@@ -8,9 +8,11 @@
 5) `composer update`
 6) `./vendor/bin/sail build`
 7) `./vendor/bin/sail up -d`
-8) `./vendor/bin/sail artisan migrate:fresh --seed`
-9) A user with email **hello@halfshellstudios.co.uk** / **password** will be seeded to the database.
-10) Navigate to http://127.0.0.1:9999/
+8) `npm install`
+9) `npm run dev`
+10) `./vendor/bin/sail artisan migrate:fresh --seed`
+11) A user with email **hello@halfshellstudios.co.uk** / **password** will be seeded to the database.
+12) Navigate to http://127.0.0.1:8000/
 
 ### Laravel Pint
 This template comes bundled with Laravel Pint.
