@@ -2,10 +2,25 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+    use RefreshDatabase;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->seed();
+    }
+
+    public function tearDown(): void
+    {
+        parent::tearDown();
+    }
+
     /**
      * A basic test example.
      */

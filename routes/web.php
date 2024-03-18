@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,13 +21,12 @@ Route::get('/info', function () {
     phpinfo();
 });
 
-Route::get('/ping', function (Request  $request) {
-    $connection = DB::connection('mongodb');
-    $msg = 'MongoDB is accessible!';
-    try {
-        $connection->command(['ping' => 1]);
-    } catch (\Exception  $e) {
-        $msg = 'MongoDB is not accessible. Error: ' . $e->getMessage();
-    }
-    return ['msg' => $msg];
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });

@@ -1,4 +1,4 @@
-name: Tests
+name: Workflow
 
 on:
   push:
@@ -44,6 +44,17 @@ jobs:
           php-version: '8.3'
       - name: Check PHP syntax errors
         uses: overtrue/phplint@9.1.2
+
+    phplint:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+          with:
+            fetch-depth: 2
+        - name: "laravel-pint"
+          uses: aglipanci/laravel-pint-action@0.1.0
+          with:
+            preset: laravel
 
 
 
