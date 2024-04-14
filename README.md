@@ -6,39 +6,37 @@
 3) Navigate to root
 4) Copy the .env.example and create a new .env file (`cp .env.example .env`)
 5) `composer update`
-6) `./vendor/bin/sail build`
-7) `./vendor/bin/sail up -d`
-8) `./vendor/bin/sail npm install`
-9) `./vendor/bin/sail npm run dev`
-10) `./vendor/bin/sail artisan migrate:fresh --seed`
+6) `docker-compose build`
+7) `docker-compose up -d`
+8) `docker-compose exec web npm install`
+9) `docker-compose exec web npm run dev`
+10) `docker-compose exec web php artisan migrate:fresh --seed`
 11) A user with email **hello@halfshellstudios.co.uk** / **password** will be seeded to the database.
 12) Navigate to http://127.0.0.1:8000/
 
 **Additional**
-- Any routing issues (i.e clockwork), run `php artisan route:clear`
+- Any routing issues (i.e clockwork), run `docker-compose exec web php artisan route:clear`
 - Rename the github folder to .github
-
 
 ### Laravel Pint
 This template comes bundled with Laravel Pint.
-https://laravel.com/docs/10.x/pint
+https://laravel.com/docs/11.x/pint
 
 **To run**
-`./vendor/bin/pint`
+`docker-compose exec web ./vendor/bin/pint`
 
 **To run against a specific folder**
-i.e for **app/Models** `./vendor/bin/pint app/Models`
-
+i.e for **app/Models** `docker-compose exec web ./vendor/bin/pint app/Models`
 
 ### Laravel Jetstream
 This template comes bundled with Laravel Jetstream by default (Livewire).
 https://jetstream.laravel.com/introduction.html
 
 **Install Jetstream With Livewire**
-`./vendor/bin/sail artisan jetstream:install livewire --dark`
+`docker-compose exec web php artisan jetstream:install livewire --dark`
 
 **Or, Install Jetstream With Inertia**
-`./vendor/bin/sail artisan jetstream:install inertia --dark`
+`docker-compose exec web php artisan jetstream:install inertia --dark`
 
 ### MySQL Database
 To access the database, you can use TablePlus or any other database management tool that supports MySQL or PostgreSQL, depending on your Laravel application's database configuration.
@@ -59,5 +57,5 @@ Below is a screenshot illustrating how to connect to a MySQL database using Tabl
 With this addition, users following your Laravel template will have guidance on accessing the database using TablePlus or a similar tool.
 
 ### Tests
-`./vendor/bin/sail artisan test`
+`docker-compose exec web php artisan test`
 
