@@ -51,7 +51,10 @@
         "phpstan:baseline": "./vendor/bin/phpstan analyse --memory-limit=1G --generate-baseline",
         "rector:dry-run": "./vendor/bin/rector process --dry-run",
         "rector": "./vendor/bin/rector process",
-        "test:coverage": "php -r \"is_dir('database') ?: mkdir('database', 0777, true); if (file_exists('database/database.sqlite')) unlink('database/database.sqlite'); touch('database/database.sqlite');\" && XDEBUG_MODE=coverage ./vendor/bin/pest --coverage --min=60",
+        "test:coverage": "php -r \"is_dir('database') ?: mkdir('database', 0777, true); if (file_exists('database/database.sqlite')) unlink('database/database.sqlite'); touch('database/database.sqlite');\" && XDEBUG_MODE=coverage ./vendor/bin/pest --coverage --min=100",
+        "coverage": [
+            "@test:coverage"
+        ],
         "standards:check": [
             "@phpcs",
             "@phpmd",
