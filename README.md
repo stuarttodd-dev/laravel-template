@@ -10,10 +10,11 @@
 7) `docker-compose up -d`
 8) `docker-compose exec web php artisan migrate:fresh --seed`
 9) `docker-compose exec web npm install`
-10) `docker-compose exec web npm run dev`
+10) Ensure Node 20.19+ (or 22.12+) is available locally, then `docker-compose exec web npm install`
+11) `docker-compose exec web npm run dev`
 
-11) A user with email **hello@halfshellstudios.co.uk** / **password** will be seeded to the database.
-12) Navigate to http://127.0.0.1:8008/
+12) A user with email **hello@halfshellstudios.co.uk** / **password** will be seeded to the database.
+13) Navigate to http://127.0.0.1:8008/
 
 **Additional**
 - Any routing issues (i.e clockwork), run `docker-compose exec web php artisan route:clear`
@@ -23,11 +24,19 @@
 Common tooling is bundled behind Composer scripts for quick access:
 
 - `composer tests` &mdash; run the full automated test suite.
+- `composer test:coverage` &mdash; run the Pest suite with code coverage (`XDEBUG_MODE=coverage` required). Append `-- --coverage-html=storage/logs/coverage` to emit an HTML report.
 - `composer standards:check` &mdash; execute `phpcs`, `phpmd`, `phpstan`, and a Rector dry-run.
 - `composer standards:fix` &mdash; apply automated code-style fixes via `phpcbf` and Rector.
 - Individual checks are also exposed (`composer phpcs`, `composer phpstan`, `composer rector`, etc.).
 
 You can run these locally or inside the container, e.g. `docker-compose exec web composer standards:check`.
+
+### Tech Stack
+- Laravel 12 with Jetstream (Inertia + Vue 3)
+- Vite 7, TailwindCSS 3, Ziggy, Axios
+- PHP testing with Pest, optional coverage (`composer coverage`)
+- Front-end testing with Jest (`npm run test:unit`)
+- E2E testing with Playwright (`npm run test:e2e`, UI mode `npm run test:e2e:ui`)
 
 ### Laravel Pint
 This template comes bundled with Laravel Pint.
@@ -40,13 +49,10 @@ https://laravel.com/docs/12.x/pint
 i.e for **app/Models** `docker-compose exec web ./vendor/bin/pint app/Models`
 
 ### Laravel Jetstream
-This template comes bundled with Laravel Jetstream by default (Livewire).
+Jetstream is installed with the Inertia stack by default.
 https://jetstream.laravel.com/introduction.html
 
-**Install Jetstream With Livewire**
-`docker-compose exec web php artisan jetstream:install livewire --dark`
-
-**Or, Install Jetstream With Inertia**
+To regenerate the scaffolding, run:
 `docker-compose exec web php artisan jetstream:install inertia --dark`
 
 ### Database Access
@@ -72,5 +78,10 @@ docker-compose exec mysql mysql -u"$DB_USERNAME" -p"$DB_PASSWORD" "$DB_DATABASE"
 Swap `mysql` for `psql` if you enable the bundled PostgreSQL service.
 
 ### Tests
-`docker-compose exec web php artisan test`
+- PHP feature/unit tests: `docker-compose exec web composer tests`
+- PHP coverage (requires Xdebug): `docker-compose exec web composer coverage`
+- Jest unit tests: `docker-compose exec web npm run test:unit`
+- Playwright E2E: `docker-compose exec web npm run test:e2e`
+- Playwright HTML report: `docker-compose exec web npm run test:e2e -- --project=chromium --reporter=html && npx playwright show-report`
+- Playwright UI mode: `docker-compose exec web npm run test:e2e:ui`
 

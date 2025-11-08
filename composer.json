@@ -5,14 +5,15 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.4",
+        "php": "^8.2",
         "guzzlehttp/guzzle": "^7.2",
+        "inertiajs/inertia-laravel": "^2.0",
         "laravel/framework": "^12.0",
         "laravel/jetstream": "^5.2",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.8",
-        "livewire/livewire": "^3.0",
-        "sentry/sentry-laravel": "^4.3"
+        "sentry/sentry-laravel": "^4.3",
+        "tightenco/ziggy": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.12",
@@ -21,13 +22,13 @@
         "laravel/sail": "^1.18",
         "laravel/telescope": "^5.0",
         "mockery/mockery": "^1.4.4",
-        "phpunit/phpunit": "^11.0",
-        "spatie/laravel-ignition": "^2.9",
         "pestphp/pest": "^3.8",
-        "squizlabs/php_codesniffer": "^3.10",
+        "pestphp/pest-plugin-laravel": "^3.2",
         "phpmd/phpmd": "^2.15",
         "phpstan/phpstan": "^1.12",
-        "rector/rector": "^1.2"
+        "rector/rector": "^1.2",
+        "spatie/laravel-ignition": "^2.9",
+        "squizlabs/php_codesniffer": "^3.10"
     },
     "autoload": {
         "psr-4": {
@@ -42,7 +43,7 @@
         }
     },
     "scripts": {
-        "tests": "npm run build && ./vendor/bin/pest",
+        "tests": "npm run build && php -r \"is_dir('database') ?: mkdir('database', 0777, true); if (file_exists('database/database.sqlite')) unlink('database/database.sqlite'); touch('database/database.sqlite');\" && ./vendor/bin/pest",
         "phpcs": "./vendor/bin/phpcs app tests",
         "phpcbf": "./vendor/bin/phpcbf app tests",
         "phpmd": "./vendor/bin/phpmd app/ text phpmd.xml",
@@ -50,6 +51,7 @@
         "phpstan:baseline": "./vendor/bin/phpstan analyse --memory-limit=1G --generate-baseline",
         "rector:dry-run": "./vendor/bin/rector process --dry-run",
         "rector": "./vendor/bin/rector process",
+        "test:coverage": "php -r \"is_dir('database') ?: mkdir('database', 0777, true); if (file_exists('database/database.sqlite')) unlink('database/database.sqlite'); touch('database/database.sqlite');\" && XDEBUG_MODE=coverage ./vendor/bin/pest --coverage --min=60",
         "standards:check": [
             "@phpcs",
             "@phpmd",

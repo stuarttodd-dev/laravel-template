@@ -1,7 +1,6 @@
 parameters:
     paths:
         - app
-        - tests
     level: 0
     tmpDir: storage/framework/cache/phpstan
 

@@ -9,7 +9,7 @@ on:
 
 jobs:
   standards:
-    name: Standards Check
+    name: Tests & Standards
     runs-on: ubuntu-latest
 
     steps:
@@ -30,6 +30,17 @@ jobs:
 
       - name: Install dependencies
         run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.19.0'
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Run application test suite
+        run: composer tests
 
       - name: Run standards check
         run: composer standards:check
