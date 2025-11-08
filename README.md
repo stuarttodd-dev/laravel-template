@@ -32,9 +32,9 @@ Thanks for forking this Laravel 12 + Inertia + Vue 3 starter—your batteries-in
    - After installation, launch Docker Desktop (or start the Docker service) so containers can boot.
 2. Fork this repository (recommended) or clone it directly.
 3. Copy the environment file: `cp .env.example .env`
-4. Install PHP dependencies: `composer install`
-5. Build the Sail images: `docker-compose build`
-6. Boot the stack: `docker-compose up -d`
+4. Build the Sail images: `docker-compose build`
+5. Boot the stack: `docker-compose up -d`
+6. Install PHP dependencies: `docker-compose exec web composer install`
 7. Run database migrations and seeders: `docker-compose exec web php artisan migrate:fresh --seed`
 8. Install front-end packages: `docker-compose exec web npm install`
 9. Start the dev server (Vite + Laravel): `docker-compose exec web npm run dev`
