@@ -22,10 +22,13 @@ class AuthenticationTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->post('/login', [
+        $response = $this->post(
+            '/login',
+            [
             'email' => $user->email,
             'password' => 'password',
-        ]);
+            ]
+        );
 
         $this->assertAuthenticated();
         $response->assertRedirect(RouteServiceProvider::HOME);
@@ -35,10 +38,13 @@ class AuthenticationTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $this->post('/login', [
+        $this->post(
+            '/login',
+            [
             'email' => $user->email,
             'password' => 'wrong-password',
-        ]);
+            ]
+        );
 
         $this->assertGuest();
     }

@@ -19,9 +19,19 @@
 - Any routing issues (i.e clockwork), run `docker-compose exec web php artisan route:clear`
 - Rename the github folder to .github
 
+### Composer Scripts
+Common tooling is bundled behind Composer scripts for quick access:
+
+- `composer tests` &mdash; run the full automated test suite.
+- `composer standards:check` &mdash; execute `phpcs`, `phpmd`, `phpstan`, and a Rector dry-run.
+- `composer standards:fix` &mdash; apply automated code-style fixes via `phpcbf` and Rector.
+- Individual checks are also exposed (`composer phpcs`, `composer phpstan`, `composer rector`, etc.).
+
+You can run these locally or inside the container, e.g. `docker-compose exec web composer standards:check`.
+
 ### Laravel Pint
 This template comes bundled with Laravel Pint.
-https://laravel.com/docs/11.x/pint
+https://laravel.com/docs/12.x/pint
 
 **To run**
 `docker-compose exec web ./vendor/bin/pint`
@@ -39,23 +49,27 @@ https://jetstream.laravel.com/introduction.html
 **Or, Install Jetstream With Inertia**
 `docker-compose exec web php artisan jetstream:install inertia --dark`
 
-### MySQL Database
-To access the database, you can use TablePlus or any other database management tool that supports MySQL or PostgreSQL, depending on your Laravel application's database configuration.
-If you prefer using TablePlus, follow these steps:
+### Database Access
+Connect with any SQL client (TablePlus, DataGrip, MySQL Workbench, psql, etc.) using the credentials defined in your `.env` file. By default the Sail stack exposes:
 
-1. **Install TablePlus**: If you haven't already installed TablePlus, download and install it from the [official website](https://tableplus.com/).
+- **Host:** `127.0.0.1`
+- **MySQL Port:** `3306`
+- **Database:** value of `DB_DATABASE` (default `laravel`)
+- **Username:** value of `DB_USERNAME` (default `sail`)
+- **Password:** value of `DB_PASSWORD` (default `password`)
 
-2. **Connect to the Database**:
-    - Open TablePlus and click on the "+" button to create a new connection.
-    - Choose the appropriate database type (MySQL or PostgreSQL) based on your Laravel application's configuration.
-    - Enter the connection details such as host, port, username, password, and database name. These details can be found in your `.env` file.
-    - Once the connection is established, you will be able to browse the database tables, run queries, and manage your data using TablePlus.
+#### GUI tools (e.g. TablePlus)
+1. Install the client (TablePlus is available at [tableplus.com](https://tableplus.com/)).
+2. Create a new **MySQL** connection.
+3. Enter the host, port, database, username, and password listed above (or customised values from `.env`).
+4. Save and connect to browse tables, manage data, and run queries.
 
-Below is a screenshot illustrating how to connect to a MySQL database using TablePlus:
+#### Command line
+```
+docker-compose exec mysql mysql -u"$DB_USERNAME" -p"$DB_PASSWORD" "$DB_DATABASE"
+```
 
-![TablePlus Connection](db.png)
-
-With this addition, users following your Laravel template will have guidance on accessing the database using TablePlus or a similar tool.
+Swap `mysql` for `psql` if you enable the bundled PostgreSQL service.
 
 ### Tests
 `docker-compose exec web php artisan test`
