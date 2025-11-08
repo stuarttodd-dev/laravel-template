@@ -8,11 +8,12 @@
 5) `composer update`
 6) `docker-compose build`
 7) `docker-compose up -d`
-8) `docker-compose exec web npm install`
-9) `docker-compose exec web npm run dev`
-10) `docker-compose exec web php artisan migrate:fresh --seed`
+8) `docker-compose exec web php artisan migrate:fresh --seed`
+9) `docker-compose exec web npm install`
+10) `docker-compose exec web npm run dev`
+
 11) A user with email **hello@halfshellstudios.co.uk** / **password** will be seeded to the database.
-12) Navigate to http://127.0.0.1:8000/
+12) Navigate to http://127.0.0.1:8008/
 
 **Additional**
 - Any routing issues (i.e clockwork), run `docker-compose exec web php artisan route:clear`
