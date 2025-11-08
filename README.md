@@ -1,7 +1,6 @@
 # Laravel Template
 
-Clean, repeatable Laravel 12 foundations with Jetstream, Inertia, and Vue 3 already wired together.  
-Fork this repository whenever you want to spin up a fresh project with modern tooling, batteries included.
+Thanks for forking this Laravel 12 + Inertia + Vue 3 starter—your batteries-included foundation for clean, repeatable projects.
 
 <p align="center">
   <img src="https://halfshellstudios.co.uk/assets/images/primary-logo.png" alt="Half Shell Studios Logo" width="220" />
@@ -11,7 +10,8 @@ Fork this repository whenever you want to spin up a fresh project with modern to
   <img src="http://stuart-todd.co.uk/theme/assets/img/profile2.jpg" alt="Stuart Todd" width="160" style="border-radius: 50%;" />
 </p>
 
-**Need the backstory?** Check out the creator’s CV here: [halfshellstudios.co.uk/cv.pdf](https://halfshellstudios.co.uk/cv.pdf)
+**Need the backstory?** Check out the creator’s CV here: [halfshellstudios.co.uk/cv.pdf](https://halfshellstudios.co.uk/cv.pdf)  
+**Portfolio & contact:** [halfshellstudios.co.uk](https://halfshellstudios.co.uk)
 
 ---
 
